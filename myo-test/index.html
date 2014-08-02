@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<head>
+<script>
+  var socket = new WebSocket("ws://172.20.13.6:7024/myo/1");
+  socket.onmessage = function(event) {
+    console.log(event);
+  }
+</script>
+<body>
+Hi.
+</body>
