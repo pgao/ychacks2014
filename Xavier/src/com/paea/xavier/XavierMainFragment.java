@@ -16,7 +16,7 @@ public class XavierMainFragment extends Fragment {
   private static final String TAG = XavierMainFragment.class.getName();
 
   public XavierMainFragment() {}
-  
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -36,6 +36,14 @@ public class XavierMainFragment extends Fragment {
       @Override
       public void onClick(View v) {
         startActivity(new Intent(getActivity(), XavierCameraActivity.class));
+      }
+    });
+
+    Button webViewButton = (Button) rootView.findViewById(R.id.webview_button);
+    webViewButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(getActivity(), XavierWebViewActivity.class));
       }
     });
 

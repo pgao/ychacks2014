@@ -35,6 +35,12 @@
         </activity>
 
         <activity
+            android:name=".XavierWebViewActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden" >
+        </activity>
+
+        <activity
             android:name=".XavierCardboardActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden" >

@@ -8,6 +8,8 @@
 
     <string name="cardboard_label">CARDBOARD</string>
     <string name="camera_label">CAMERA</string>
+    <string name="webview_label">WEBVIEW</string>
+
     <string name="capture_label">CAPTURE</string>
 
 </resources>
