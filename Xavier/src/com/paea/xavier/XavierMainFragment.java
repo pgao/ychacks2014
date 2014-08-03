@@ -1,19 +1,21 @@
 package com.paea.xavier;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class MainFragment extends Fragment {
+import com.google.vrtoolkit.cardboard.samples.treasurehunt.MainActivity;
 
-  private static final String TAG = MainFragment.class.getName();
+public class XavierMainFragment extends Fragment {
 
-  public MainFragment() {}
+  private static final String TAG = XavierMainFragment.class.getName();
+
+  public XavierMainFragment() {}
   
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,7 +27,7 @@ public class MainFragment extends Fragment {
     button.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Log.e(TAG, "Hello!");
+        startActivity(new Intent(getActivity(), MainActivity.class));
       }
     });
 

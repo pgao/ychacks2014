@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class XavierMainActivity extends Activity {
 
   // private WebSocketClient client;
 
@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 
     if (savedInstanceState == null) {
       getFragmentManager().beginTransaction()
-          .add(R.id.container, new MainFragment()).commit();
+          .add(R.id.container, new XavierMainFragment()).commit();
     }
   }
 
