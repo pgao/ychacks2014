@@ -6,5 +6,6 @@
 
     <string name="cardboard_label">CARDBOARD</string>
     <string name="camera_label">CAMERA</string>
+    <string name="capture_label">CAPTURE</string>
 
 </resources>

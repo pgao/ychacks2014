@@ -13,14 +13,16 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class CameraPreview extends SurfaceView
-    implements SurfaceHolder.Callback, Camera.PreviewCallback {
-  
+    implements SurfaceHolder.Callback, Camera.PreviewCallback, Camera.PictureCallback {
+
   private static final String TAG = CameraPreview.class.getName();
-  
+
   private final Context context;
-  
+
   private SurfaceHolder holder;
   private Camera camera;
+
+  private boolean safeToTakePicture;
 
   public CameraPreview(Context context) {
     super(context);
@@ -60,11 +62,27 @@ public class CameraPreview extends SurfaceView
 
   @Override
   public void onPreviewFrame(byte[] data, Camera camera) {
+    safeToTakePicture = true;
     int format = camera.getParameters().getPreviewFormat();
     Log.e(TAG, "camera preview frame image format: " + format);
     // Do stuff with frame data here, if this gets long maybe move it to its own class
   }
-  
+
+  @Override
+  public void onPictureTaken(byte[] data, Camera camera) {
+    Log.e(TAG, "picture data available");
+    // this is supposedly jpeg image?? what
+    camera.startPreview();
+  }
+
+  public void capture() {
+    Log.e(TAG, "capture!");
+    if (safeToTakePicture) {
+      camera.takePicture(null, null, this);
+      safeToTakePicture = false;
+    }
+  }
+
   private int getNeededRotation() {
     Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
     Camera.getCameraInfo(CameraInfo.CAMERA_FACING_BACK, info);
