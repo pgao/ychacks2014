@@ -1,45 +1,39 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/xavier_red"
+    android:orientation="vertical"
     tools:context="com.paea.xavier.MainActivity$PlaceholderFragment" >
     
-    <LinearLayout
-        android:background="@color/xavier_red"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:paddingLeft="16dp"
-	    android:paddingRight="16dp"
-	    android:orientation="vertical" >
-	    <TextView
-	        android:gravity="center"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:paddingTop="50dp"
-	        android:text="@string/xavier"
-        	android:textColor="@color/white"
-        	android:textSize="90sp" />
-	    <TextView
-	        android:gravity="center"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:paddingTop="30dp"
-	        android:text="@string/press_trigger"
-	        android:textColor="@color/white"
-	        android:textSize="20sp" />
-	</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="40dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/xavier" />
+
+	  <TextView
+	      android:layout_width="match_parent"
+	      android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+	      android:gravity="center"
+	      android:text="@string/press_trigger"
+	      android:textColor="@color/white"
+	      android:textSize="20sp" />
 
     <Button
         android:id="@+id/cardboard_button"
-        android:layout_centerInParent="true"
+	      android:layout_gravity="center"
         android:text="@string/cardboard_label"
-        style="@style/XavierButton" />
+        style="@style/XavierButtonReversed" />
 
     <Button
         android:id="@+id/camera_button"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/cardboard_button"
+	      android:layout_gravity="center"
         android:text="@string/camera_label"
-        style="@style/XavierButton" />
+        style="@style/XavierButtonReversed" />
 
-</RelativeLayout>
+</LinearLayout>
