@@ -12,7 +12,8 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
+public class CameraPreview extends SurfaceView
+    implements SurfaceHolder.Callback, Camera.PreviewCallback {
   
   private static final String TAG = CameraPreview.class.getName();
   
@@ -38,6 +39,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     camera = Camera.open();
     try {
       camera.setPreviewDisplay(holder);
+      camera.setPreviewCallback(this);
     } catch (IOException e) {
       Log.e(TAG, e.getMessage());
     }
@@ -45,6 +47,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
   @Override
   public void surfaceDestroyed(SurfaceHolder holder) {
+    camera.setPreviewCallback(null);
     camera.stopPreview();
     camera.release();
   }
@@ -53,6 +56,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
   public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
     camera.setDisplayOrientation(getNeededRotation());
     camera.startPreview();
+  }
+
+  @Override
+  public void onPreviewFrame(byte[] data, Camera camera) {
+    int format = camera.getParameters().getPreviewFormat();
+    Log.e(TAG, "camera preview frame image format: " + format);
+    // Do stuff with frame data here, if this gets long maybe move it to its own class
   }
   
   private int getNeededRotation() {
