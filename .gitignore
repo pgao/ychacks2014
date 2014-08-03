@@ -1,10 +1,10 @@
 .DS_Store
 node_modules
 
-.classpath
-.project
-bin/*
-gen/*
-proguard-project.txt
-project.properties
-res/values-*
+Xavier/.classpath
+Xavier/.project
+Xavier/bin/*
+Xavier/gen/*
+Xavier/proguard-project.txt
+Xavier/project.properties
+Xavier/res/values-*
