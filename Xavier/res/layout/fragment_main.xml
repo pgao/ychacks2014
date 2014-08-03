@@ -18,7 +18,7 @@
 	        android:paddingTop="50dp"
 	        android:text="@string/xavier"
         	android:textColor="@color/white"
-        	android:textSize="100sp" />
+        	android:textSize="90sp" />
 	    <TextView
 	        android:gravity="center"
 	        android:layout_width="match_parent"
@@ -28,5 +28,18 @@
 	        android:textColor="@color/white"
 	        android:textSize="20sp" />
 	</LinearLayout>
+
+    <Button
+        android:id="@+id/cardboard_button"
+        android:layout_centerInParent="true"
+        android:text="@string/cardboard_label"
+        style="@style/XavierButton" />
+
+    <Button
+        android:id="@+id/camera_button"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/cardboard_button"
+        android:text="@string/camera_label"
+        style="@style/XavierButton" />
 
 </RelativeLayout>
