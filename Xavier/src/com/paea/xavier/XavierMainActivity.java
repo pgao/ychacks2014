@@ -1,23 +1,30 @@
 package com.paea.xavier;
 
+import java.util.Arrays;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.codebutler.android_websockets.WebSocketClient;
 import com.paea.xavier.MyoUtil.MyoListener;
 
-public class XavierMainActivity extends Activity implements MyoListener {
+public class XavierMainActivity extends Activity implements MyoListener, OnClickListener {
 
   protected static final String TAG = XavierMainActivity.class.getSimpleName();
-  private static final String BEGIN_ACTION = "thumb_to_pinky";
+
+  private static final List<String> BEGIN_ACTIONS =
+      Arrays.asList("fist", "thumb_to_pinky", "wave_out");
 
   private WebSocketClient wsClient;
 
@@ -39,15 +46,30 @@ public class XavierMainActivity extends Activity implements MyoListener {
     getLayoutInflater().inflate(R.layout.fragment_main, (ViewGroup) findViewById(R.id.left_frame));
     getLayoutInflater().inflate(R.layout.fragment_main, (ViewGroup) findViewById(R.id.right_frame));
 
+    Button beginButton = (Button) findViewById(R.id.begin_button);
+    beginButton.setOnClickListener(this);
+
     wsClient = MyoUtil.createWebSocketClient(this);
     wsClient.connect();
   }
 
   @Override
   public void onPoseEvent(String poseType) {
-    if (poseType.equals(BEGIN_ACTION)) {
-      startActivity(new Intent(this, XavierWebViewActivity.class));
+    Log.e(TAG, "POSETYPE: " + poseType);
+    if (BEGIN_ACTIONS.contains(poseType)) {
+      startWebViewActivity();
     }
+  }
+
+  @Override
+  public void onClick(View view) {
+    if (view.getId() == R.id.begin_button) {
+      startWebViewActivity();
+    }
+  }
+
+  private void startWebViewActivity() {
+    startActivity(new Intent(this, XavierWebViewActivity.class));
   }
 
   @Override
