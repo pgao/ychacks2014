@@ -17,7 +17,7 @@ client.on('message', function(message) {
 	messageJson = JSON.parse(message);
 	if (herokuConnected && messageJson[1]['type'] != "orientation") {
 		console.log(messageJson[1]['type']);
-	    heroku.send(message);
+	    heroku.send(message, function(error) { });
 	}
     // console.log(message);
 });

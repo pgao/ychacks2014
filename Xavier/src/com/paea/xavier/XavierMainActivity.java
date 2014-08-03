@@ -2,22 +2,30 @@ package com.paea.xavier;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.codebutler.android_websockets.WebSocketClient;
+import com.paea.xavier.WebSocketUtil.MyoListener;
 
 public class XavierMainActivity extends Activity {
 
-  private WebSocketClient client;
+  protected static final String TAG = XavierMainActivity.class.getSimpleName();
+  private WebSocketClient wsClient;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    client = WebSocketUtil.createWebSocketClient();
-    client.connect();
+    wsClient = WebSocketUtil.createWebSocketClient(new MyoListener() {
+      @Override
+      public void onPoseEvent(String poseType) {
+        Log.e(TAG, "Lol did this actually work, got " + poseType);
+      }
+    });
+    wsClient.connect();
 
     if (savedInstanceState == null) {
       getFragmentManager().beginTransaction()
