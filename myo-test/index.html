@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <script>
-  var socket = new WebSocket("ws://172.20.13.6:8000/myo/1");
+  var socket = new WebSocket("ws://yc-2014-myo.herokuapp.com");
   socket.onmessage = function(event) {
     console.log("on message");
     console.log(event);
