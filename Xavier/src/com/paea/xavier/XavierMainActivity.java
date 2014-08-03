@@ -5,17 +5,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.codebutler.android_websockets.WebSocketClient;
+
 public class XavierMainActivity extends Activity {
 
-  // private WebSocketClient client;
+  private WebSocketClient client;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    // client = WebSocketUtil.createWebSocketClient();
-    // client.connect();
+    client = WebSocketUtil.createWebSocketClient();
+    client.connect();
 
     if (savedInstanceState == null) {
       getFragmentManager().beginTransaction()

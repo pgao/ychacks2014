@@ -13,7 +13,7 @@ import com.codebutler.android_websockets.WebSocketClient;
 public class WebSocketUtil {
   
   private static final String TAG = WebSocketUtil.class.getName();
-  private static final String URI_STRING = "ws://172.20.13.6:8000/myo/1";
+  private static final String URI_STRING = "ws://yc-2014-myo.herokuapp.com";
 
   public static WebSocketClient createWebSocketClient() {
     List<BasicNameValuePair> extraHeaders = Arrays.asList(
