@@ -1,0 +1,23 @@
+{
+  "name": "ychacks2014",
+  "version": "0.0.0",
+  "description": "ychacks2014 ===========",
+  "main": "proxy.js",
+  "dependencies": {
+    "ws": "^0.4.31"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pgao/ychacks2014.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgao/ychacks2014/issues"
+  },
+  "homepage": "https://github.com/pgao/ychacks2014"
+}
