@@ -64,7 +64,7 @@ public class CameraPreview extends SurfaceView
   public void onPreviewFrame(byte[] data, Camera camera) {
     safeToTakePicture = true;
     int format = camera.getParameters().getPreviewFormat();
-    Log.e(TAG, "camera preview frame image format: " + format);
+//    Log.e(TAG, "camera preview frame image format: " + format);
     // Do stuff with frame data here, if this gets long maybe move it to its own class
   }
 

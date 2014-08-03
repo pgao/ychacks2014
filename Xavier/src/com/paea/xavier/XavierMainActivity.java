@@ -57,6 +57,7 @@ public class XavierMainActivity extends Activity implements MyoListener, OnClick
   public void onPoseEvent(String poseType) {
     Log.e(TAG, "POSETYPE: " + poseType);
     if (BEGIN_ACTIONS.contains(poseType)) {
+      wsClient.disconnect();
       startWebViewActivity();
     }
   }
