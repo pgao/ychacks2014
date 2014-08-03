@@ -1,21 +1,26 @@
-var WebSocket = require('ws'),
-    myoServer = new WebSocket.Server({ port: 8000}),
-    androidServer = new WebSocket.Server({ port: 8001});
+var WebSocketServer = require("ws").Server
+var http = require("http")
+var express = require("express")
+var app = express()
+var port = process.env.PORT || 5000
 
-var myoClient = null, androidClient = null;
+app.use(express.static(__dirname + "/"))
 
-myoServer.on('connection', function(ws) {
+var server = http.createServer(app)
+server.listen(port)
+
+var wss = new WebSocketServer({server: server})
+
+var clients = [];
+
+wss.on("connection", function(ws) {
   console.log("Received myo client");
-  myoClient = ws;
+  clients.push(ws);
 
   ws.on('message', function(message) {
-    if (androidClient != null) {
-      androidClient.send(message);
-    }
+    clients.forEach(function(client) {
+      if (client != null)
+        client.send(message, function(error) { });
+    });
   });
-});
-
-androidServer.on('connection', function(ws) {
-  console.log("Received android client.");
-  androidClient = ws;
-});
+})

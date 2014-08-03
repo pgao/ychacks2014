@@ -1,15 +1,23 @@
-var WebSocket = require('ws'),
-    client = new WebSocket("ws://localhost:7204/myo/1"),
-    server = new WebSocket.Server({ port: 8000 });
+var WebSocket = require('ws');
+	client = new WebSocket("ws://localhost:7204/myo/1"),
+	heroku = new WebSocket("ws://yc-2014-myo.herokuapp.com");
 
-var connected_client = null;
+var herokuConnected = false;
 
-server.on('connection', function(ws) {
-    connected_client = ws;
+heroku.on('open', function () {
+	console.log("heroku connected");
+	herokuConnected = true;
+});
+
+heroku.on('message', function (message) {
+	console.log(message);
 });
 
 client.on('message', function(message) {
-    if (connected_client != null) {
-        connected_client.send(message);
-    }
+	messageJson = JSON.parse(message);
+	if (herokuConnected && messageJson[1]['type'] != "orientation") {
+		console.log(messageJson[1]['type']);
+	    heroku.send(message);
+	}
+    // console.log(message);
 });
