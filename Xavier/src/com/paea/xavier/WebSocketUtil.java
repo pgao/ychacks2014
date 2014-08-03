@@ -35,7 +35,6 @@ public class WebSocketUtil {
         try {
           // Look for:
           // [ "event", { "type" : "pose", "pose" : "<pose_value>" } ]
-          Log.e("myo", message);
           JSONArray json = new JSONArray(message);
           String messageType = (String) json.get(0);
           if (messageType.equals("event")) {
@@ -43,7 +42,7 @@ public class WebSocketUtil {
             String eventType = eventData.getString("type");
             if (eventType.equals("pose")) {
               String pose = eventData.getString("pose");
-              Log.e("myo", pose);
+              Log.d(TAG, pose);
               myoListener.onPoseEvent(pose);
             }
           }
