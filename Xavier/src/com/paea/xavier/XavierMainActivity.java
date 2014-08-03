@@ -12,20 +12,11 @@ import com.paea.xavier.MyoUtil.MyoListener;
 public class XavierMainActivity extends Activity {
 
   protected static final String TAG = XavierMainActivity.class.getSimpleName();
-  private WebSocketClient wsClient;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
-    wsClient = MyoUtil.createWebSocketClient(new MyoListener() {
-      @Override
-      public void onPoseEvent(String poseType) {
-        Log.e(TAG, "Lol did this actually work, got " + poseType);
-      }
-    });
-    wsClient.connect();
 
     if (savedInstanceState == null) {
       getFragmentManager().beginTransaction()

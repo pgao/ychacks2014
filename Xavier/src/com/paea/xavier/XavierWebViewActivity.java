@@ -1,8 +1,12 @@
 package com.paea.xavier;
 
+import com.codebutler.android_websockets.WebSocketClient;
+import com.paea.xavier.MyoUtil.MyoListener;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
@@ -10,10 +14,13 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 public class XavierWebViewActivity extends Activity {
+	
+  protected static final String TAG = XavierWebViewActivity.class.getSimpleName();
 
   private static final String URL = "http://www.elizabethylin.com/ychacks/";
 
   private WebView webView;
+  private WebSocketClient wsClient;
 
   private class WebClient extends WebViewClient {
     @Override
@@ -26,12 +33,26 @@ public class XavierWebViewActivity extends Activity {
     public void onPageFinished(WebView webView, String url) {
 //      webView.loadUrl("javascript:changeBackground()");
     }
+    
+    public void scrollRight() {
+    	webView.loadUrl("javascript:scrollRight()");
+    }
   }
 
   @SuppressLint("SetJavaScriptEnabled")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    wsClient = MyoUtil.createWebSocketClient(new MyoListener() {
+        @Override
+        public void onPoseEvent(String poseType) {
+          Log.e(TAG, "Lol did this actually work, got " + poseType);
+          if (poseType.equals("wave_out")) {
+          	scrollRight();
+          }
+        }
+    });
+    wsClient.connect();
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     getWindow().getDecorView().setSystemUiVisibility(
