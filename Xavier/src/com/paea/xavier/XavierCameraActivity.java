@@ -2,7 +2,6 @@ package com.paea.xavier;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -18,7 +17,11 @@ public class XavierCameraActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     requestWindowFeature(Window.FEATURE_NO_TITLE);
+    getWindow().getDecorView().setSystemUiVisibility(
+        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
+
     setContentView(R.layout.camera_layout);
 
     FrameLayout container = (FrameLayout) findViewById(R.id.camera_container);
@@ -33,5 +36,7 @@ public class XavierCameraActivity extends Activity {
         preview.capture();
       }
     });
+
+//    captureButton.setVisibility(View.GONE);
   }
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 
 public class XavierWebViewActivity extends Activity {
 
@@ -23,7 +24,7 @@ public class XavierWebViewActivity extends Activity {
 
     @Override
     public void onPageFinished(WebView webView, String url) {
-      webView.loadUrl("javascript:changeBackground()");
+//      webView.loadUrl("javascript:changeBackground()");
     }
   }
 
@@ -36,11 +37,16 @@ public class XavierWebViewActivity extends Activity {
     getWindow().getDecorView().setSystemUiVisibility(
         View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
 
-    webView = new WebView(this);
+    setContentView(R.layout.webview_layout);
+
+    webView = (WebView) findViewById(R.id.webview);
     webView.getSettings().setJavaScriptEnabled(true);
     webView.setWebViewClient(new WebClient());
     webView.loadUrl(URL);
+    webView.setBackgroundColor(0x00000000);
 
-    setContentView(webView);
+    FrameLayout container = (FrameLayout) findViewById(R.id.camera_container);
+    CameraPreview preview = new CameraPreview(this);
+    container.addView(preview);
   }
 }

@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.codebutler.android_websockets.WebSocketClient;
-import com.paea.xavier.WebSocketUtil.MyoListener;
+import com.paea.xavier.MyoUtil.MyoListener;
 
 public class XavierMainActivity extends Activity {
 
@@ -19,7 +19,7 @@ public class XavierMainActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    wsClient = WebSocketUtil.createWebSocketClient(new MyoListener() {
+    wsClient = MyoUtil.createWebSocketClient(new MyoListener() {
       @Override
       public void onPoseEvent(String poseType) {
         Log.e(TAG, "Lol did this actually work, got " + poseType);
