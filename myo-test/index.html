@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+  var socket = new WebSocket("ws://172.20.13.6:8000/myo/1");
+  socket.onmessage = function(event) {
+    console.log("on message");
+    console.log(event);
+  };
+  socket.onopen = function(event) {
+    console.log("on open");
+    console.log(event);
+  };
+  socket.onerror = function(event) {
+    console.log("on error");
+    console.log(event);
+  };
+</script>
+
+<body>
+Hi.
+</body>
