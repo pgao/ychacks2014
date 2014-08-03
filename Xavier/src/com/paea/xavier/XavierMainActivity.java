@@ -1,26 +1,52 @@
 package com.paea.xavier;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.codebutler.android_websockets.WebSocketClient;
 import com.paea.xavier.MyoUtil.MyoListener;
 
-public class XavierMainActivity extends Activity {
+public class XavierMainActivity extends Activity implements MyoListener {
 
   protected static final String TAG = XavierMainActivity.class.getSimpleName();
+  private static final String BEGIN_ACTION = "thumb_to_pinky";
+
+  private WebSocketClient wsClient;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+//    if (savedInstanceState == null) {
+//      getFragmentManager().beginTransaction()
+//          .add(R.id.container, new XavierMainFragment()).commit();
+//    }
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    getWindow().getDecorView().setSystemUiVisibility(
+        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
     setContentView(R.layout.activity_main);
 
-    if (savedInstanceState == null) {
-      getFragmentManager().beginTransaction()
-          .add(R.id.container, new XavierMainFragment()).commit();
+    getLayoutInflater().inflate(R.layout.fragment_main, (ViewGroup) findViewById(R.id.left_frame));
+    getLayoutInflater().inflate(R.layout.fragment_main, (ViewGroup) findViewById(R.id.right_frame));
+
+    wsClient = MyoUtil.createWebSocketClient(this);
+    wsClient.connect();
+  }
+
+  @Override
+  public void onPoseEvent(String poseType) {
+    if (poseType.equals(BEGIN_ACTION)) {
+      startActivity(new Intent(this, XavierWebViewActivity.class));
     }
   }
 

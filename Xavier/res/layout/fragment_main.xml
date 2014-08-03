@@ -20,7 +20,7 @@
 	      android:layout_height="wrap_content"
         android:layout_margin="30dp"
 	      android:gravity="center"
-	      android:text="@string/press_trigger"
+	      android:text="@string/begin"
 	      android:textColor="@color/white"
 	      android:textSize="20sp" />
 
@@ -28,18 +28,21 @@
         android:id="@+id/cardboard_button"
 	      android:layout_gravity="center"
         android:text="@string/cardboard_label"
+        android:visibility="gone"
         style="@style/XavierButtonReversed" />
 
     <Button
         android:id="@+id/camera_button"
 	      android:layout_gravity="center"
         android:text="@string/camera_label"
+        android:visibility="gone"
         style="@style/XavierButtonReversed" />
 
     <Button
         android:id="@+id/webview_button"
 	      android:layout_gravity="center"
         android:text="@string/webview_label"
+        android:visibility="gone"
         style="@style/XavierButtonReversed" />
 
 </LinearLayout>
