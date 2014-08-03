@@ -13,9 +13,9 @@ import android.util.Log;
 
 import com.codebutler.android_websockets.WebSocketClient;
 
-public class WebSocketUtil {
+public class MyoUtil {
   
-  private static final String TAG = WebSocketUtil.class.getName();
+  private static final String TAG = MyoUtil.class.getName();
   private static final String URI_STRING = "ws://yc-2014-myo.herokuapp.com";
 
   public static WebSocketClient createWebSocketClient(final MyoListener myoListener) {
