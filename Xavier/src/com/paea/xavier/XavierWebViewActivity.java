@@ -24,7 +24,7 @@ public class XavierWebViewActivity extends Activity implements MyoListener {
   private static final String URL = "http://www.elizabethylin.com/ychacks/";
 
   private static final List<String> BEGIN_ACTIONS =
-      Arrays.asList("fist", "thumb_to_pinky", "fingers_spread");
+      Arrays.asList("thumb_to_pinky", "fingers_spread");
 
   private WebView webView;
   private WebSocketClient wsClient;
@@ -65,11 +65,12 @@ public class XavierWebViewActivity extends Activity implements MyoListener {
     webView = (WebView) findViewById(R.id.webview);
     webView.getSettings().setJavaScriptEnabled(true);
     webView.setWebViewClient(new WebClient());
-    webView.loadUrl(URL);
+//    webView.loadUrl(URL);
     webView.setBackgroundColor(0x00000000);
 
 
-//    wsClient = MyoUtil.createWebSocketClient(this);
+    wsClient = MyoUtil.createWebSocketClient(this);
+    wsClient.connect();
 //    wsClient = MyoUtil.createWebSocketClient(new MyoListener() {
 //        @Override
 //        public void onPoseEvent(String poseType) {
@@ -88,9 +89,9 @@ public class XavierWebViewActivity extends Activity implements MyoListener {
         @Override
         public void run() {
           webView.loadUrl(URL);
+          wsClient.disconnect();
         }
       });
-      wsClient.disconnect();
     }
   }
 }
